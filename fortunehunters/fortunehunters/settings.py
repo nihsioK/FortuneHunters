@@ -49,10 +49,14 @@ TEMPLATES = [
 WSGI_APPLICATION = 'fortunehunters.wsgi.application'
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+	'default': {  
+		'ENGINE': 'django.db.backends.postgresql_psycopg2',  
+		'NAME': "defaultdb",
+        'USER': "doadmin",
+        'PASSWORD': "AVNS_0QuXZ16LmQf0GjrQMmi",
+        'HOST': "db-postgresql-fra1-87388-do-user-15704437-0.c.db.ondigitalocean.com",
+        'PORT': "25060",
+	}
 }
 
 AUTH_PASSWORD_VALIDATORS = [

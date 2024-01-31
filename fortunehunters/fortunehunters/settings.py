@@ -1,13 +1,39 @@
 from pathlib import Path
+import os # Importing the os module for interacting with the operating system
+from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-6n-!jho(q1m#_t+e#!n2$t)aj=^9ef+=@o7%e49l(pwnzrl85d'
+load_dotenv() # Loading environment variables from .env file
+
+SECRET_KEY = os.environ.get("SECRET_KEY") # Getting the secret key from environment variables
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost'] # Allowed hosts for the Django application
 
+CORS_ALLOWED_ORIGINS = [
+    "https://localhost:5173",
+    "https://knowshare-2e1a84c86803.herokuapp.com",
+] # Allowing specified CORS origins
+
+CSRF_ALLOWED_ORIGINS = [
+    "https://localhost:5173",
+    "https://knowshare-2e1a84c86803.herokuapp.com",
+] # Allowing specified CSRF origins
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://localhost:5173",
+    "https://knowshare-2e1a84c86803.herokuapp.com",
+] # Specifying trusted CSRF origins
+
+CSRF_COOKIE_HTTPONLY = False  # Setting CSRF cookie to be accessible from JavaScript
+CSRF_COOKIE_SECURE = True   # Setting CSRF cookie to be transmitted only over HTTPS
+CSRF_COOKIE_SAMESITE = 'None'  # Setting CSRF cookie SameSite attribute to 'None'
+
+CORS_ALLOW_CREDENTIALS = True  # Allowing credentials during CORS requests
+SESSION_COOKIE_SAMESITE = 'None'  # Setting session cookie SameSite attribute to 'None'
+SESSION_COOKIE_SECURE = True  # Setting session cookie to be transmitted only over HTTPS
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -16,11 +42,23 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    'sslserver', #comment
+    
+    'rest_framework', #comment
+    'corsheaders', #comment
+    
+    'customuser', #comment
+    
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', # Including WhiteNoise middleware
     'django.contrib.sessions.middleware.SessionMiddleware',
+    
+    'corsheaders.middleware.CorsMiddleware', # Including CorsMiddleware for handling CORS headers
+    
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -29,6 +67,13 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'fortunehunters.urls'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        # 'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+} #comment
 
 TEMPLATES = [
     {
@@ -51,11 +96,11 @@ WSGI_APPLICATION = 'fortunehunters.wsgi.application'
 DATABASES = {
 	'default': {  
 		'ENGINE': 'django.db.backends.postgresql_psycopg2',  
-		'NAME': "defaultdb",
-        'USER': "doadmin",
-        'PASSWORD': "AVNS_0QuXZ16LmQf0GjrQMmi",
-        'HOST': "db-postgresql-fra1-87388-do-user-15704437-0.c.db.ondigitalocean.com",
-        'PORT': "25060",
+		'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST'),
+        'PORT': os.environ.get("DB_PORT"),
 	}
 }
 
@@ -86,3 +131,11 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#AUTH_USER_MODEL = 'customusers.CustomUser' # Customizing the user model
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # Setting the media root directory
+MEDIA_URL = '/media/' # Setting the media URL
+
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' # Configuring static files storage with Whitenoise

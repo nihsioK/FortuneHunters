@@ -10,7 +10,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY") # Getting the secret key from environm
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost'] # Allowed hosts for the Django application
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'sea-turtle-app-aj87p.ondigitalocean.app'] # Allowed hosts for the Django application
 
 CORS_ALLOWED_ORIGINS = [
     "https://localhost:5173",

@@ -17,15 +17,15 @@ CORS_ALLOWED_ORIGINS = [
     "https://knowshare-2e1a84c86803.herokuapp.com",
 ] # Allowing specified CORS origins
 
-CSRF_ALLOWED_ORIGINS = [
-    "https://localhost:5173",
-    "https://knowshare-2e1a84c86803.herokuapp.com",
-] # Allowing specified CSRF origins
+# CSRF_ALLOWED_ORIGINS = [
+#     "https://localhost:5173",
+#     "https://knowshare-2e1a84c86803.herokuapp.com",
+# ] # Allowing specified CSRF origins
 
-CSRF_TRUSTED_ORIGINS = [
-    "https://localhost:5173",
-    "https://knowshare-2e1a84c86803.herokuapp.com",
-] # Specifying trusted CSRF origins
+# CSRF_TRUSTED_ORIGINS = [
+#     "https://localhost:5173",
+#     "https://knowshare-2e1a84c86803.herokuapp.com",
+# ] # Specifying trusted CSRF origins
 
 CSRF_COOKIE_HTTPONLY = False  # Setting CSRF cookie to be accessible from JavaScript
 CSRF_COOKIE_SECURE = True   # Setting CSRF cookie to be transmitted only over HTTPS

@@ -14,19 +14,16 @@ ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'sea-turtle-app-aj87p.ondigitalocean.
 
 CORS_ALLOWED_ORIGINS = [
     "https://localhost:5173",
-    "https://knowshare-2e1a84c86803.herokuapp.com",
     "https://sea-turtle-app-aj87p.ondigitalocean.app",
 ] # Allowing specified CORS origins
 
 CSRF_ALLOWED_ORIGINS = [
     "https://localhost:5173",
-    "https://knowshare-2e1a84c86803.herokuapp.com",
     "https://sea-turtle-app-aj87p.ondigitalocean.app",
 ] # Allowing specified CSRF origins
 
 CSRF_TRUSTED_ORIGINS = [
     "https://localhost:5173",
-    "https://knowshare-2e1a84c86803.herokuapp.com",
     "https://sea-turtle-app-aj87p.ondigitalocean.app",
 ] # Specifying trusted CSRF origins
 
@@ -63,12 +60,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
-    'sslserver', #comment
+    'sslserver', 
     
-    'rest_framework', #comment
-    'corsheaders', #comment
+    'rest_framework', 
+    'corsheaders', 
     
-    'customuser', #comment
+    'customuser', 
+    'base',
     
 ]
 
